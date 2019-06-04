@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
+using UnityEngine.UI;
 
 public class EntendiendoDetector : MonoBehaviour, ITrackableEventHandler
 {
-
+    public Canvas anuncio;
+    public Text cambio;
     protected TrackableBehaviour mTrackableBehaviour;
     protected TrackableBehaviour.Status m_PreviousStatus;
     protected TrackableBehaviour.Status m_NewStatus;
@@ -30,12 +32,15 @@ public class EntendiendoDetector : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             print("detecto target");
+            anuncio.enabled = false;
         }
         //cuando pierde el target
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NO_POSE)
         {
             print("perdio el target");
+            anuncio.enabled = true;
+            cambio.text = "¡No se logra detectar el target!";
         }
         //cuando comienza el programa
         else
@@ -44,7 +49,8 @@ public class EntendiendoDetector : MonoBehaviour, ITrackableEventHandler
             // Vuforia is starting, but tracking has not been lost or found yet
             // Call OnTrackingLost() to hide the augmentations
             print("comenzo el programa");
-
+            anuncio.enabled = true;
+            cambio.text = "Bienvenido a nuestro juego, encuentra el target más cercano";
         }
     }
 
