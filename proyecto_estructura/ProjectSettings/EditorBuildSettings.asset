@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/LuisLoli.unity
+    guid: b9e2bdf7cc5dc5246862b3556c8c0425
+  - enabled: 0
+    path: Assets/Scenes/DarioQ.unity
+    guid: c66a53c058d063447b785ced41b17724
+  - enabled: 1
+    path: Assets/Scenes/JoseSaldana.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

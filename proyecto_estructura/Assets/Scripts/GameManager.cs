@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
@@ -14,15 +15,15 @@ public class GameManager : MonoBehaviour
     public  QuizDB m_quizDB = null;
     public  QuizUI m_quizUI = null;
     private AudioSource m_audioSource = null;
-
+    public static int puntajeNeto=0;
+    public Text textoPuntos;
     private void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
         //crea la interfaz grafica
         NextQuestion();
+        textoPuntos.text = "Puntaje: " + puntajeNeto.ToString();
     }
-    
-
 
     private void NextQuestion()
     {
@@ -45,7 +46,11 @@ public class GameManager : MonoBehaviour
         //operador ternario 
         m_audioSource.clip = optionbutton.Opcion.correct ? m_CorrectSound : m_incorretSound;
         optionbutton.SetColor(optionbutton.Opcion.correct ? m_correctColor : m_incorrectColor);
-
+        if (optionbutton.Opcion.correct)
+        {
+            puntajeNeto++;
+            textoPuntos.text = "Puntaje: " + puntajeNeto.ToString();
+        }
         m_audioSource.Play();
 
         yield return new WaitForSeconds(m_waitTime);
